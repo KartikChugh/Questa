@@ -2,7 +2,18 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.shortcuts import reverse
 
+
+class Comment(models.Model):
+    name = models.CharField(max_length=30)
+    body = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('polls:comments')
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
