@@ -3,8 +3,11 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.utils import timezone
 from django.views import generic
+from django import forms
 
-from .models import Question, Choice
+from .models import Question, Choice, Comment
+
+
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -22,7 +25,7 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
-    
+
     def get_queryset(self):
         """
         Excludes any questions that aren't published yet.
@@ -32,6 +35,22 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+class CommentsView(generic.CreateView):
+    model = Comment
+    fields = ['name', 'body']
+    template_name = 'polls/comments.html'
+
+class CommentsListView(generic.ListView):
+    template_name = 'polls/comments_list.html'
+
+    context_object_name = 'comments_list'
+
+    def get_queryset(self):
+        """
+        Return comments.
+        """
+        return Comment.objects.all()
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
