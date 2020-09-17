@@ -15,5 +15,5 @@ urlpatterns = [
     # ex: /polls/comments/
     path('comments/', views.CommentsView.as_view(), name='comments'),
     # ex: /polls/comments/list
-    path('comments/list', views.CommentsListView.as_view(), name='comments list')
+    path('comments/list', views.CommentsListView.as_view(), name='comments_list')
 ]
