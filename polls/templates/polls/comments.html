@@ -30,10 +30,10 @@
 
 <div class="jumbotron">
 
-<form action="{% url 'polls:comments_list' %}" method="post" class="form-check">
+<form method="post" class="form-check">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Save" class="btn btn-primary">
+    <input type="submit" value="Post!" class="btn btn-primary">
 </form>
 
 </div>
