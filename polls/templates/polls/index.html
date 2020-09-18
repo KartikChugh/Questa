@@ -30,8 +30,9 @@
   <div class="jumbotron" style="background-color: white;">
     {% if latest_question_list %}
     <!-- <ul> -->
+      <div class="card-group">
     {% for question in latest_question_list %}
-    <a href="{% url 'polls:detail' question.id %}" style="color:white; text-decoration: none">
+    <a href="{% url 'polls:detail' question.id %}" style="color:white; text-decoration: none; padding-right: 5em;">
         <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
             <div class="card-header">Poll #{{ question.id }}</div>
             <div class="card-body">
@@ -42,6 +43,7 @@
     </a>
         <!-- <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li> -->
     {% endfor %}
+  </div>
     <!-- </ul> -->
     {% else %}
         <p>No polls are available.</p>
